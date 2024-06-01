@@ -1,4 +1,4 @@
-const express = require('express')
+/*const express = require('express')
 const router = express.Router()
 const { 
     getGoals,
@@ -7,8 +7,10 @@ const {
     deleteGoal,
  } = require('../controllers/goalController')
 
-router.route('/').get(getGoals).post(setGoal)
-router.route('/:id').delete(deleteGoal).put(updateGoal)
+const {protect} = require('../middleware/authMiddleware')
+
+router.route('/').get(protect, getGoals).post(setGoal)
+router.route('/:id').delete(protect, deleteGoal).put(updateGoal)
 //router.get('/', getGoals)
 
 /*router.get('/', (req, res)=> {
@@ -39,6 +41,23 @@ router.route('/:id').delete(deleteGoal).put(updateGoal)
     //res.send('Get goals')
     //res.json({ message: 'Get goals'})
     res.status(200).json({ message: `Delete goal ${req.params.id}`})
-})*/
+})
+
+module.exports = router*/
+
+
+const express = require('express')
+const router = express.Router()
+const {
+  getGoals,
+  setGoal,
+  updateGoal,
+  deleteGoal,
+} = require('../controllers/goalController')
+
+const { protect } = require('../middleware/authMiddleware')
+
+router.route('/').get(protect, getGoals).post(protect, setGoal)
+router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
 
 module.exports = router
