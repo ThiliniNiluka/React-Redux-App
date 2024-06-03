@@ -9,7 +9,7 @@ import Spinner from '../components/Spinner'
 function Register() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: '', 
     password: '',
     password2: '',
   })
@@ -54,7 +54,7 @@ function Register() {
         password,
       }
 
-      dispatch(register(userData))
+      dispatch(register(userData)) 
     }
   }
 
